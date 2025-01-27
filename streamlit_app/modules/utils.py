@@ -1,9 +1,6 @@
 import requests
 import pandas as pd
 from geopy.distance import geodesic
-import folium
-from folium.plugins import MarkerCluster
-import os
 from datetime import datetime, timezone
 
 # OpenSky API Base URL
@@ -94,8 +91,10 @@ def convert_timestamp_to_hour(unix_time):
         return datetime.fromtimestamp(int(unix_time), tz=timezone.utc).strftime('%H:%M:%S')
     return None
 
-# Generate flight map with auto-zoom
 def generate_flight_map(flights_df, airports):
+    import folium
+    from folium.plugins import MarkerCluster
+
     if flights_df.empty:
         # If no flights, return a default global map
         return folium.Map(location=[0, 0], zoom_start=2)
@@ -108,8 +107,8 @@ def generate_flight_map(flights_df, airports):
     m = folium.Map(location=[center_lat, center_lon], zoom_start=6)  # Adjust zoom_start as needed
     marker_cluster = MarkerCluster().add_to(m)
 
-    # Local airplane icon path
-    plane_icon_url = os.path.join("assets", "images", "airplane.png")
+    # Use the GitHub raw URL for the airplane icon
+    plane_icon_url = "https://raw.githubusercontent.com/josericodata/FlightTrackingApp/main/streamlit_app/assets/images/airplane.png"
 
     for _, flight in flights_df.iterrows():
         if pd.notna(flight['latitude']) and pd.notna(flight['longitude']):
@@ -123,9 +122,9 @@ def generate_flight_map(flights_df, airports):
                 <b>Departing From:</b> {flight['departingFrom']}<br>
                 <b>Estimated Arrival:</b> {nearest_airport} ({airport_code})
             """
-            # Use the local airplane icon
+            # Use the GitHub-hosted airplane icon
             icon = folium.CustomIcon(
-                icon_image=plane_icon_url,  # Local path to airplane image
+                icon_image=plane_icon_url,  # Public URL to the airplane image
                 icon_size=(40, 40)  # Adjust size as needed
             )
             # Add marker to the map
