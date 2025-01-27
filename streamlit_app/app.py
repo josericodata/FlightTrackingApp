@@ -19,7 +19,7 @@ st.set_page_config(
 image_url = "https://raw.githubusercontent.com/josericodata/FlightTrackingApp/main/streamlit_app/assets/images/flights.jpeg"
 
 # Set the background image
-set_background_image(background_image_path)
+set_background_image(image_url)
 apply_global_styles()
 apply_map_styles()
 
