@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#000000"  # Black for highlights
+backgroundColor = "#f0f8ff"  # Light blue for background
+secondaryBackgroundColor = "#f0f8ff"  # Light blue for widgets
+textColor = "#000000"  # Black for maximum readability
+font = "sans serif"

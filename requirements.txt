@@ -1,0 +1,7 @@
+streamlit==1.41.0
+requests==2.31.0
+pandas==2.1.1
+numpy==1.24.3
+geopy==2.3.0
+folium==0.14.0
+streamlit-folium==0.13.0
