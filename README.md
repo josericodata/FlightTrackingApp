@@ -142,6 +142,19 @@ Planned improvements include:
 
 ---
 
+## 🧪 **Logic and Data Exploration**
+
+To better understand the logic and data processing pipeline used in the Flight Tracking App, a Jupyter Notebook has been created. It provides a detailed walkthrough of the data cleaning, exploration, and preparation steps, ensuring transparency and reproducibility in the app's development.
+
+You can explore the notebook here: [FlightTrackingAppLogicFlow.ipynb](https://github.com/josericodata/FlightTrackingApp/blob/main/streamlit_app/assets/dataCleaning/flightTrackingAppLogicFlow.ipynb)
+
+This notebook covers:
+- Loading and inspecting OpenSky Network data.
+- Filtering flights based on airline codes (callsigns).
+- Deriving attributes like departure and estimated arrival.
+- Data transformation for real-time visualisation.
+
+---
   
 ## ⚠️ **Disclaimer**
 
