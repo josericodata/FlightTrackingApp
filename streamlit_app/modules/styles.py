@@ -29,6 +29,11 @@ def apply_global_styles():
             border-bottom: 2px solid #f1e4f5 !important;  /* Black border for seamless look */
         }
 
+        /* Disable the blinking text cursor in dropdown input */
+        input {
+            caret-color: transparent !important;
+        }
+
         </style>
         """,
         unsafe_allow_html=True
