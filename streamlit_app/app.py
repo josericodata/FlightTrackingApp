@@ -1,4 +1,3 @@
-import os
 import streamlit as st
 import pandas as pd
 from streamlit_folium import st_folium
@@ -17,7 +16,7 @@ st.set_page_config(
 )
 
 # Path to the background image
-background_image_path = os.path.join("assets", "images", "flights.jpeg")
+background_image_path = "assets/images/flights.jpeg"
 
 # Set the background image
 set_background_image(background_image_path)
