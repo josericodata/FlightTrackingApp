@@ -95,7 +95,8 @@ The app will be live at ```http://localhost:8501```
 ## 🎬 **Demo**
   
 ### Page 1: Flight Tracking App
-![Flight Tracking App](assets/gifs/flights.gif)
+![Flight Tracking App](https://raw.githubusercontent.com/josericodata/FlightTrackingApp/main/streamlit_app/assets/gifs/flights.gif)
+
 
 ---
 
