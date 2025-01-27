@@ -1,38 +1,21 @@
 import streamlit as st
 
-def set_background_image(image_path):
-    import base64
+def set_background_image(image_url):
     import streamlit as st
-    import os
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("{image_url}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
-    if os.path.exists(image_path):
-        with open(image_path, "rb") as image_file:
-            encoded_image = base64.b64encode(image_file.read()).decode()
-        st.markdown(
-            f"""
-            <style>
-            .stApp {{
-                background-image: url("data:image/jpeg;base64,{encoded_image}");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-            }}
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
-    else:
-        st.error(f"Error: The image at {image_path} was not found. Using fallback.")
-        st.markdown(
-            """
-            <style>
-            .stApp {
-                background-color: #f5f5f5;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
 
 
 def apply_global_styles():
