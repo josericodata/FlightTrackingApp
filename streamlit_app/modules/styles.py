@@ -1,21 +1,13 @@
-import os
 import streamlit as st
 
 def set_background_image(image_path):
-    """
-    Sets a background image for the Streamlit app.
-
-    :param image_path: Path to the background image file.
-    """
     import base64
     import streamlit as st
+    import os
 
     if os.path.exists(image_path):
-        # Read and encode the image to Base64
         with open(image_path, "rb") as image_file:
             encoded_image = base64.b64encode(image_file.read()).decode()
-
-        # Apply the background styling
         st.markdown(
             f"""
             <style>
@@ -27,10 +19,21 @@ def set_background_image(image_path):
             }}
             </style>
             """,
-            unsafe_allow_html=True
+            unsafe_allow_html=True,
         )
     else:
-        st.error(f"Error: The image at {image_path} was not found.")
+        st.error(f"Error: The image at {image_path} was not found. Using fallback.")
+        st.markdown(
+            """
+            <style>
+            .stApp {
+                background-color: #f5f5f5;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+
 
 def apply_global_styles():
     st.markdown(
