@@ -34,6 +34,38 @@ def apply_global_styles():
             caret-color: transparent !important;
         }
 
+        /* Style for the alert box - PURE BLACK, NO OVERLAY */
+        div.stAlert {
+            background-color: black !important;  /* Pure black */
+            border-radius: 10px !important;
+            padding: 15px !important;
+            color: white !important; /* White text */
+            font-weight: bold !important;
+            font-size: 18px !important;
+            text-align: center !important;
+            box-shadow: none !important; /* REMOVE extra background shadow */
+            border: 2px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+        }
+
+        /* Ensure text inside the alert box is fully visible */
+        div.stAlert p {
+            margin: 10px 0 !important;
+            line-height: 1.5 !important;
+            color: white !important; /* Force white text */
+        }
+
+        /* Keep important elements in bright white */
+        div.stAlert strong {
+            font-size: 20px !important;
+            color: white !important; /* Pure white */
+        }
+
+        /* REMOVE TRANSPARENCY ISSUES */
+        div[data-testid="stNotification"] {
+            background: none !important;
+            box-shadow: none !important;
+        }
+
         </style>
         """,
         unsafe_allow_html=True

@@ -71,3 +71,7 @@ if st.session_state["filtered_flights"] is not None and not st.session_state["fi
     st.dataframe(st.session_state["filtered_flights"], use_container_width=True)  # Enable full-width display
 else:
     st.write("No flight data available for the selected airline.")
+
+# Display API errors if any
+if "api_error" in st.session_state and st.session_state["api_error"]:
+    st.warning(st.session_state["api_error"])

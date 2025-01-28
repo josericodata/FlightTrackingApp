@@ -155,6 +155,17 @@ This notebook covers:
 - Data transformation for real-time visualisation.
 
 ---
+
+## ‼️ **Service Availability Warning**
+
+The Flight Tracking App relies on real-time flight data from the **OpenSky Network API**. Occasionally, the OpenSky API may experience downtime, returning a **503 Service Temporarily Unavailable** error. 
+
+If you encounter this issue, please wait a few minutes and try again. You can also check the OpenSky Network website:  
+🔗 [https://opensky-network.org](https://opensky-network.org)  
+
+We appreciate your patience! 🚀
+
+---
   
 ## ⚠️ **Disclaimer**
 

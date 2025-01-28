@@ -1,5 +1,6 @@
 import requests
 import pandas as pd
+import streamlit as st
 from geopy.distance import geodesic
 from datetime import datetime, timezone
 
@@ -56,16 +57,36 @@ def get_airline_dropdown_data():
         return pd.DataFrame(columns=["ShortName", "Airline"])
 
 # Fetch flight data from OpenSky API
+# Fetch flight data from OpenSky API with robust error handling
 def fetch_flight_data():
     try:
         response = requests.get(BASE_URL)
+
         if response.status_code == 200:
             return response.json()
+
         else:
-            print(f"Error: {response.status_code} - {response.text}")
+            # Store error message in session state
+            st.session_state["api_error"] = (
+                f"🚨 OpenSky API Error: **{response.status_code}** - {response.reason}.\n"
+                "The OpenSky Network API is currently unavailable or experiencing issues.\n"
+                "🔄 **Please try again later.**"
+            )
             return None
+
+    except requests.exceptions.RequestException as e:
+        st.session_state["api_error"] = (
+            f"❌ **Network Error:** Unable to connect to OpenSky API.\n"
+            f"Details: {str(e)}\n"
+            "Please check your internet connection and try again."
+        )
+        return None
+
     except Exception as e:
-        print(f"An error occurred: {e}")
+        st.session_state["api_error"] = (
+            f"⚠️ **Unexpected Error:** {str(e)}\n"
+            "Something went wrong. Please refresh the page or try again later."
+        )
         return None
 
 # Filter flights by airline code (callsign prefix)
