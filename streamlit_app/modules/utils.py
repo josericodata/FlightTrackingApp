@@ -29,11 +29,6 @@ def load_airports():
         airports = airports[airports['type'] == 'large_airport']
         
         return airports
-    
-    except FileNotFoundError:
-        st.error("❌ Error: The airports data file was not found. Please ensure 'assets/data/airports.csv' exists.")
-        return pd.DataFrame(columns=['ident', 'name', 'latitude_deg', 'longitude_deg', 'type'])  # Return empty DataFrame
-
 
 
 # Fetch airline data for dropdown
