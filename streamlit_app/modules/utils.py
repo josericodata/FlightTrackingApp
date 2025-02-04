@@ -1,3 +1,4 @@
+import os
 import requests
 import pandas as pd
 import streamlit as st
@@ -11,11 +12,20 @@ OPENFLIGHTS_URL = "https://raw.githubusercontent.com/jpatokal/openflights/master
 
 # Load airport data
 def load_airports():
-    url = "https://ourairports.com/data/airports.csv"
-    airports = pd.read_csv(url)
+    # Define the local path to the CSV file
+    file_path = os.path.join("assets", "data", "airports.csv")
+    
+    # Read the CSV file
+    airports = pd.read_csv(file_path)
+    
+    # Select relevant columns
     airports = airports[['ident', 'name', 'latitude_deg', 'longitude_deg', 'type']]
-    airports = airports[airports['type'] == 'large_airport']  # Filter large airports
+    
+    # Filter only large airports
+    airports = airports[airports['type'] == 'large_airport']
+    
     return airports
+
 
 # Fetch airline data for dropdown
 def get_airline_dropdown_data():
@@ -231,5 +241,6 @@ def process_flights(selected_airline_code):
             "callsign", "departingFrom", "estimatedArrivalAt", "timePosition",
             "altitude(m)", "speedKmh", "longitude", "latitude", "icao24"
         ])
+
 
 
