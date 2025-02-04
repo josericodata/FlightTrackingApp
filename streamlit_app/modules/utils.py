@@ -1,4 +1,3 @@
-import os
 import requests
 import pandas as pd
 import streamlit as st
@@ -10,21 +9,31 @@ BASE_URL = "https://opensky-network.org/api/states/all"
 # OpenFlights URL
 OPENFLIGHTS_URL = "https://raw.githubusercontent.com/jpatokal/openflights/master/data/airlines.dat"
 
-# Load airport data
+@st.cache_data
 def load_airports():
-    # Define the local path to the CSV file
-    file_path = os.path.join("assets", "data", "airports.csv")
+    """
+    Loads airport data from a local CSV file stored in Streamlit Cloud.
+    The function is cached to improve performance and reduce repeated file reads.
+    """
+    try:
+        # Directly reference the file path
+        file_path = "assets/data/airports.csv"
+        
+        # Read the CSV file
+        airports = pd.read_csv(file_path)
+        
+        # Select relevant columns
+        airports = airports[['ident', 'name', 'latitude_deg', 'longitude_deg', 'type']]
+        
+        # Filter only large airports
+        airports = airports[airports['type'] == 'large_airport']
+        
+        return airports
     
-    # Read the CSV file
-    airports = pd.read_csv(file_path)
-    
-    # Select relevant columns
-    airports = airports[['ident', 'name', 'latitude_deg', 'longitude_deg', 'type']]
-    
-    # Filter only large airports
-    airports = airports[airports['type'] == 'large_airport']
-    
-    return airports
+    except FileNotFoundError:
+        st.error("❌ Error: The airports data file was not found. Please ensure 'assets/data/airports.csv' exists.")
+        return pd.DataFrame(columns=['ident', 'name', 'latitude_deg', 'longitude_deg', 'type'])  # Return empty DataFrame
+
 
 
 # Fetch airline data for dropdown
