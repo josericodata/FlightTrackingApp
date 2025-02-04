@@ -15,20 +15,19 @@ def load_airports():
     Loads airport data from a local CSV file stored in Streamlit Cloud.
     The function is cached to improve performance and reduce repeated file reads.
     """
-    try:
-        # Directly reference the file path
-        file_path = "assets/data/airports.csv"
-        
-        # Read the CSV file
-        airports = pd.read_csv(file_path)
-        
-        # Select relevant columns
-        airports = airports[['ident', 'name', 'latitude_deg', 'longitude_deg', 'type']]
-        
-        # Filter only large airports
-        airports = airports[airports['type'] == 'large_airport']
-        
-        return airports
+    # Directly reference the file path
+    file_path = "assets/data/airports.csv"
+
+    # Read the CSV file
+    airports = pd.read_csv(file_path)
+
+    # Select relevant columns
+    airports = airports[['ident', 'name', 'latitude_deg', 'longitude_deg', 'type']]
+
+    # Filter only large airports
+    airports = airports[airports['type'] == 'large_airport']
+
+    return airports
 
 
 # Fetch airline data for dropdown
