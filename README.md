@@ -5,6 +5,31 @@
 
 ---
 
+## 🧬 **Project Structure**
+```bash
+FlightTrackingApp
+├── assets/         
+│   ├── data/
+│   │   └── airports.csv
+│   ├── dataCleaning/
+│   │   └── flightTrackingAppLogicFlow.ipynb
+│   ├── gifs/
+│   │   └── flights.gif
+│   └── images/ 
+│       ├── airplane.png
+│       └── flights.png
+├── streamlit_app/
+│   ├── modules/
+│   │   ├── styles.py
+│   │   └── utils.py
+│   └── app.py   
+├── LICENSE                 
+├── README.md               
+└── requirements.txt        
+```
+
+---
+
 ## 🛠️ **How It's Built**
 
 The Flight Tracking App is developed using the following tools and frameworks:
@@ -63,27 +88,35 @@ git clone https://github.com/josericodata/FlightTrackingApp.git
 ```
 **Hint:** Replace `user` with `josericodata` in the URL above. I am deliberately asking you to pause here so you can support my work. If you appreciate it, please consider giving the repository a star or forking it. Your support means a lot—thank you! 😊
 
-2. Create a virtual environment:
+2. Navigate to the project directory:
+
+```bash
+
+cd FlightTrackingApp
+
+```
+
+3. Create a virtual environment:
 ```bash
 python3 -m venv venvFlightTrackingApp
 ```
 
-3. Activate the virtual environment:
+4. Activate the virtual environment:
 ```bash
 source venvFlightTrackingApp/bin/activate
 ```
 
-4. Install requirements:
+5. Install requirements:
 ```bash
 pip install -r requirements.txt
 ```
 
-5. Navigate to the app directory:
+6. Navigate to the app directory:
 ```bash
 cd streamlit_app
 ```
 
-6. Run the app:
+7. Run the app:
 ```bash
 streamlit run app.py
 ```
@@ -164,6 +197,12 @@ If you encounter this issue, please wait a few minutes and try again. You can al
 🔗 [https://opensky-network.org](https://opensky-network.org)  
 
 We appreciate your patience! 🚀
+
+---
+
+## 🤝 **Open Pull Requests**
+
+If you find any bug, feel free to contact me by opening a pull request on GitHub or via email at **maninastre@gmail.com**.
 
 ---
   
