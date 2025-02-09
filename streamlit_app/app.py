@@ -10,7 +10,7 @@ from modules.utils import (
 
 # Set the page configuration
 st.set_page_config(
-    page_title="Flight Tracking App",  # Page title
+    page_title="Streamlit Flight Tracking App",  # Page title
     page_icon="✈️"  # Favicon
 )
 
