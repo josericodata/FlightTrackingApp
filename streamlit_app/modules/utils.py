@@ -1,4 +1,3 @@
-import os
 import requests
 import pandas as pd
 import streamlit as st
@@ -16,11 +15,9 @@ def load_airports():
     Loads airport data from a local CSV file stored in Streamlit Cloud.
     The function is cached to improve performance and reduce repeated file reads.
     """
-    # Get the absolute path based on the working directory
-    file_path = os.path.join(os.getcwd(), "streamlit_app", "assets", "data", "airports.csv")
 
     # Read the CSV file
-    airports = pd.read_csv(file_path)
+    airports = pd.read_csv("assets/data/airports.csv")
 
     # Select relevant columns
     airports = airports[['ident', 'name', 'latitude_deg', 'longitude_deg', 'type']]
@@ -29,8 +26,6 @@ def load_airports():
     airports = airports[airports['type'] == 'large_airport']
 
     return airports
-
-
 
 # Fetch airline data for dropdown
 def get_airline_dropdown_data():
@@ -144,7 +139,7 @@ def generate_flight_map(flights_df, airports):
     marker_cluster = MarkerCluster().add_to(m)
 
     # Use the GitHub raw URL for the airplane icon
-    plane_icon_url = "https://raw.githubusercontent.com/josericodata/FlightTrackingApp/main/streamlit_app/assets/images/airplane.png"
+    plane_icon_url = "https://raw.githubusercontent.com/josericodata/FlightTrackingApp/main/assets/images/airplane.png"
 
     for _, flight in flights_df.iterrows():
         if pd.notna(flight['latitude']) and pd.notna(flight['longitude']):

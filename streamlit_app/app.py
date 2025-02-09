@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 # Path to the background image
-background_image_url = "https://raw.githubusercontent.com/josericodata/FlightTrackingApp/main/streamlit_app/assets/images/flights.jpeg"
+background_image_url = "https://raw.githubusercontent.com/josericodata/FlightTrackingApp/main/assets/images/flights.jpeg"
 
 # Set the background image
 set_background_image(background_image_url)
