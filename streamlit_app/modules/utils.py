@@ -1,9 +1,10 @@
+import folium
 import requests
 import pandas as pd
 import streamlit as st
 from geopy.distance import geodesic
 from datetime import datetime, timezone
-
+from folium.plugins import MarkerCluster
 # OpenSky API Base URL
 BASE_URL = "https://opensky-network.org/api/states/all"
 # OpenFlights URL
@@ -122,43 +123,35 @@ def convert_timestamp_to_hour(unix_time):
         return datetime.fromtimestamp(int(unix_time), tz=timezone.utc).strftime('%H:%M:%S')
     return None
 
-def generate_flight_map(flights_df, airports):
-    import folium
-    from folium.plugins import MarkerCluster
-
-    if flights_df.empty:
-        # If no flights, return a default global map
+def generate_flight_map(filtered_flights):
+    if filtered_flights.empty:
         return folium.Map(location=[0, 0], zoom_start=2)
 
-    # Calculate the center of all flight coordinates
-    center_lat = flights_df['latitude'].mean()
-    center_lon = flights_df['longitude'].mean()
+    center_lat = filtered_flights['latitude'].mean()
+    center_lon = filtered_flights['longitude'].mean()
 
-    # Create a base map centered on the flights
-    m = folium.Map(location=[center_lat, center_lon], zoom_start=6)  # Adjust zoom_start as needed
+    m = folium.Map(location=[center_lat, center_lon], zoom_start=6)
     marker_cluster = MarkerCluster().add_to(m)
 
-    # Use the GitHub raw URL for the airplane icon
     plane_icon_url = "https://raw.githubusercontent.com/josericodata/FlightTrackingApp/main/assets/images/airplane.png"
 
-    for _, flight in flights_df.iterrows():
+    def format_float(value):
+        """ Convert value to float and format to 2 decimal places, handle non-numeric cases """
+        try:
+            return f"{float(value):.2f}"
+        except ValueError:
+            return value  # Return the original string if it's not a number
+
+    for _, flight in filtered_flights.iterrows():
         if pd.notna(flight['latitude']) and pd.notna(flight['longitude']):
-            # Find the nearest airport
-            nearest_airport, airport_code, _ = find_nearest_airport(
-                flight['latitude'], flight['longitude'], airports
-            )
-            # Popup info
             popup_info = f"""
                 <b>Callsign:</b> {flight['callsign']}<br>
                 <b>Departing From:</b> {flight['departingFrom']}<br>
-                <b>Estimated Arrival:</b> {nearest_airport} ({airport_code})
+                <b>Speed:</b> {format_float(flight['speed(Kmh)'])} km/h<br>
+                <b>Altitude:</b> {format_float(flight['altitude(m)'])} m<br>
+                <b>Arriving at:</b> {flight['estimatedArrivalAt']}<br>
             """
-            # Use the GitHub-hosted airplane icon
-            icon = folium.CustomIcon(
-                icon_image=plane_icon_url,  # Public URL to the airplane image
-                icon_size=(40, 40)  # Adjust size as needed
-            )
-            # Add marker to the map
+            icon = folium.CustomIcon(icon_image=plane_icon_url, icon_size=(40, 40))
             folium.Marker(
                 location=[flight['latitude'], flight['longitude']],
                 popup=popup_info,

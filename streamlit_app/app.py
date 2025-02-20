@@ -55,7 +55,7 @@ if selected_airline != "Select Airline":
         # Update session state
         st.session_state["selected_airline"] = airline_code
         st.session_state["filtered_flights"] = process_flights(airline_code)
-        st.session_state["flight_map"] = generate_flight_map(st.session_state["filtered_flights"], airports)
+        st.session_state["flight_map"] = generate_flight_map(st.session_state["filtered_flights"])
 
         # Cache the generated map
         st.session_state["cached_map"] = st.session_state["flight_map"]
