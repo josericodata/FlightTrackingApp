@@ -133,6 +133,16 @@ The app will be live at ```http://localhost:8501```
 
 ---
 
+### ▶️ Watch the YouTube Tutorial
+
+
+[![Real-Time Flight Tracker with Python & Streamlit Live Flight Map Using OpenSky API](https://img.youtube.com/vi/ZjZRb15m5KQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=ZjZRb15m5KQ "Click to play")
+
+Click the image above or [here](https://www.youtube.com/watch?v=ZjZRb15m5KQ) to watch the video on YouTube.
+
+---
+
+
 ## 🔧 **Environment Setup**
 
 The Flight Tracking App is built and tested using the following software environment:
