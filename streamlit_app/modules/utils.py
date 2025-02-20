@@ -147,8 +147,8 @@ def generate_flight_map(filtered_flights):
             popup_info = f"""
                 <b>Callsign:</b> {flight['callsign']}<br>
                 <b>Departing From:</b> {flight['departingFrom']}<br>
-                <b>Speed:</b> {format_float(flight['speed(Kmh)'])} km/h<br>
-                <b>Altitude:</b> {format_float(flight['altitude(m)'])} m<br>
+                <b>Speed(Km/h):</b> {format_float(flight['speed(Kmh)'])}<br>
+                <b>Altitude(m):</b> {format_float(flight['altitude(m)'])}<br>
                 <b>Arriving at:</b> {flight['estimatedArrivalAt']}<br>
             """
             icon = folium.CustomIcon(icon_image=plane_icon_url, icon_size=(40, 40))
