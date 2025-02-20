@@ -184,7 +184,7 @@ def process_flights(selected_airline_code):
         if filtered_flights.empty:
             return pd.DataFrame(columns=[
                 "callsign", "departingFrom", "estimatedArrivalAt", "timePosition",
-                "altitude(m)", "speedKmh", "longitude", "latitude", "icao24"
+                "altitude(m)", "speed(Kmh)", "longitude", "latitude", "icao24"
             ])
 
         # Define the classify_altitude function
@@ -212,7 +212,7 @@ def process_flights(selected_airline_code):
 
         # Convert speed from m/s to km/h
         filtered_flights["velocity"] = filtered_flights["velocity"].fillna(0)  # Fill missing speed with 0
-        filtered_flights["speedKmh"] = filtered_flights["velocity"] * 3.6  # Convert to km/h
+        filtered_flights["speed(Kmh)"] = filtered_flights["velocity"] * 3.6  # Convert to km/h
 
         # Rename other columns
         column_rename_map = {
@@ -224,7 +224,7 @@ def process_flights(selected_airline_code):
         # Select specific columns for output
         display_columns = [
             "callsign", "departingFrom", "estimatedArrivalAt", "timePosition",
-            "altitude(m)", "speedKmh", "longitude", "latitude", "icao24"
+            "altitude(m)", "speed(Kmh)", "longitude", "latitude", "icao24"
         ]
         return filtered_flights[display_columns].reset_index(drop=True)
 
@@ -232,7 +232,7 @@ def process_flights(selected_airline_code):
         print("No flight data available.")
         return pd.DataFrame(columns=[
             "callsign", "departingFrom", "estimatedArrivalAt", "timePosition",
-            "altitude(m)", "speedKmh", "longitude", "latitude", "icao24"
+            "altitude(m)", "speed(Kmh)", "longitude", "latitude", "icao24"
         ])
 
 
