@@ -67,7 +67,6 @@ def get_airline_dropdown_data():
         print(f"Error loading OpenFlights data: {e}")
         return pd.DataFrame(columns=["ShortName", "Airline"])
 
-# Fetch flight data from OpenSky API
 # Fetch flight data from OpenSky API with robust error handling
 def fetch_flight_data():
     try:
